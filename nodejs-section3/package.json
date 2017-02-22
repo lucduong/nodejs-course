@@ -1,0 +1,21 @@
+{
+  "name": "nodejs-section3",
+  "version": "1.0.0",
+  "description": "Demo NodeJS Section 3",
+  "main": "app.js",
+  "repository": {},
+  "author": "Luc Duong",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon app.js",
+    "prod": "node app.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.16.1",
+    "express": "^4.14.1",
+    "pug": "^2.0.0-beta11"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  }
+}
