@@ -1,0 +1,14 @@
+extends layout
+block page
+  h1 User List
+  .container
+    table
+      thead
+        tr
+          td username
+          td email
+      tbody
+        each user in users
+          tr
+            td #{user.username}
+            td= user.email

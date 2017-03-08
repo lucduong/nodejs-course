@@ -1,0 +1,11 @@
+extends layout
+block page
+  h1 Add New User
+  .container
+    form(style="color:#000").form-group(action='/add-user', method='POST')
+      label.control-label Username
+      input.form-control#username(name='username')
+      label.control-label Email
+      input.form-control#email(name='email')
+      br
+      button(type='submit') Submit
