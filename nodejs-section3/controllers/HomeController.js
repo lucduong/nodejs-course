@@ -1,4 +1,6 @@
-const _getIndexView = (req, res) => {
+const UserService = require('../services/UserService')
+
+const getIndexView = (req, res) => {
   const model = {
     user: {
       username: 'lucduong',
@@ -9,9 +11,39 @@ const _getIndexView = (req, res) => {
   res.render('home', model)
 }
 
-const _getContactView = (req, res) => {
+const getContactView = (req, res) => {
   res.render('contact')
 }
 
-exports.getIndexView = _getIndexView
-exports.getContactView = _getContactView
+const getAddUserView = (req, res) => {
+  res.render('add-user')
+}
+
+const postAddUser = (req, res) => {
+  const username = req.body.username
+  const email = req.body.email
+
+  UserService.addUser(username, email)
+    .then((user) => {
+      console.log(`Added 1 user: `, user)
+      res.redirect('/users')
+    })
+}
+
+const getUserListView = (req, res) => {
+  UserService.getUserList()
+    .then((users) => {
+      console.log(`Users List: `, users)
+      res.render('user-list', {
+        users: users
+      })
+    })
+}
+
+module.exports = {
+  getIndexView,
+  getContactView,
+  getAddUserView,
+  postAddUser,
+  getUserListView,
+}

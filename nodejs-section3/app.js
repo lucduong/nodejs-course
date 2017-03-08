@@ -21,6 +21,7 @@ global.users = [
 ]
 
 if (NODE_ENV == 'development') {
+  console.log(`NODE_ENV: ${NODE_ENV}`)
   dotenv.load({ path: path.join(__dirname, '.env') })
 }
 
@@ -33,29 +34,10 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use('/', router)
 app.use('/api', apiRouter)
 
-const db = require('./models/sequelize');
+const db = require('./models');
 db.sequelize.sync()
   .then(() => {
     app.listen(port, () => {
       console.log(`Server is running at http://localhost:${port}`)
-      const User = require('./models/sequelize').User
-      User.findAll({raw: true})
-        .then((users) => {
-          console.log(`Users: `, users)
-        })
-        .catch((err) => {
-          console.log('Error: ', err.message)
-        })
-
-      // User.count()
-      //   .then((count) => {
-      //     console.log(`Count: ${count}`)
-      //     if (!count) {
-      //       User.create({ username: 'lucduong', email: 'luc@ltv.vn' })
-      //         .then((user) => {
-      //           console.log(`Created User: `, user)
-      //         })
-      //     }
-      //   })
     })
   });
